@@ -69,7 +69,7 @@ The required live and offline experiments were completed on **22 August 2026**.
 | Refusal trace | Hosted search plus the real `flag_for_human` call and result captured |
 | Failure trace | Full caught bad-vector-store exception captured |
 | Action-limit probe | Both framework limits stopped an intentional local-tool loop |
-| Automated checks | 14 tests passed in the workspace and from a fresh ZIP extraction |
+| Automated checks | 14 tests passed in the workspace; the ZIP was separately checked against the exact 10-file submission allowlist |
 | Shipping decision | Do not ship yet; add evidence-to-citation matching first |
 
 These results should not be read as a claim of seven-out-of-eight factual
@@ -83,7 +83,7 @@ interpretation is in `FINDINGS.md`.
 
 ## Rubric and evidence map
 
-| Rubric area | Implementation | Saved evidence |
+| Rubric area | Implementation | Saved GitHub evidence |
 |---|---|---|
 | Real hosted corpus and one reusable agent path | `store.py`, `agent.py`, `ask()` | `experiments/vector_store_build.txt`, `traces/success.txt` |
 | Hosted search plus a second escalation tool | `file_search`, `flag_for_human` | `traces/refusal.txt`, baseline `q06` |
@@ -94,7 +94,7 @@ interpretation is in `FINDINGS.md`.
 
 ---
 
-## Project structure
+## Repository structure
 
 ```text
 s07-assignment/
@@ -140,6 +140,15 @@ The local `.env`, `.venv/`, Python caches, submission ZIP, and hosted
 vector-store contents are excluded from Git. The five source files are included
 so the project can build a fresh hosted store when another user reproduces the
 assignment.
+
+This tree describes the complete GitHub project, not the submission archive.
+The assignment handout requests a smaller ZIP containing exactly ten files; the
+precise allowlist and packaging command are documented below.
+
+Several entries in the repository, including the detailed `README.md`, tests,
+source documents, refusal trace, safeguard probe, and supplemental experiment
+evidence, improve reproducibility but are not requested inside the submitted
+archive.
 
 ### File descriptions
 
@@ -895,10 +904,13 @@ artifacts without rebuilding the hosted store or spending API tokens.
 | Citation-guardrail tests | 4 | Non-empty source-line pass, handled-refusal pass, missing-line fail, and empty-line fail |
 | **Total** | **14** | Complete offline validation suite |
 
-The final archive was also extracted into a fresh temporary directory and this
-same 14-test suite passed from the extracted copy. These tests do not verify
-that the remote vector store still exists, make live model calls, or provide a
-semantic score for every baseline answer.
+These tests do not verify that the remote vector store still exists, make live
+model calls, or provide a semantic score for every baseline answer. The tests
+are intentionally retained in GitHub but excluded from the submission ZIP
+because they are not part of the handout's exact `SUBMIT` tree. The minimal ZIP
+is validated separately by checking its exact entry allowlist, comparing every
+archived file with its repository source, and compiling the four included
+Python files for syntax after extraction.
 
 ---
 
@@ -1061,17 +1073,23 @@ handling rather than expecting byte-identical answer prose.
 
 ## Submission archive
 
-Create the ZIP from the repository root so it contains the required top-level
-`s07-assignment/` wrapper:
+The PDF handout specifies an exact ten-file submission tree. Create the ZIP
+from the repository root by naming only those files, while preserving the
+required `s07-assignment/` wrapper:
 
 ```bash
-zip -r s07-assignment/s07-assignment.zip s07-assignment \
-  -x 's07-assignment/.venv/*' \
-     's07-assignment/.env' \
-     's07-assignment/__pycache__/*' \
-     's07-assignment/tests/__pycache__/*' \
-     's07-assignment/*.zip' \
-     's07-assignment/.DS_Store'
+rm -f s07-assignment/s07-assignment.zip
+zip s07-assignment/s07-assignment.zip \
+  s07-assignment/store.py \
+  s07-assignment/agent.py \
+  s07-assignment/safeguards.py \
+  s07-assignment/evals.py \
+  s07-assignment/datasets/agent_eval.jsonl \
+  s07-assignment/experiments/baseline.csv \
+  s07-assignment/experiments/tool_failure.csv \
+  s07-assignment/traces/success.txt \
+  s07-assignment/traces/failure.txt \
+  s07-assignment/FINDINGS.md
 ```
 
 Validate compressed-file integrity:
@@ -1086,13 +1104,19 @@ Inspect the final paths:
 unzip -Z1 s07-assignment/s07-assignment.zip
 ```
 
+Then enforce the exact allowlist rather than checking only the entry count:
+
+```bash
+python3 -c "import zipfile; expected={'s07-assignment/store.py','s07-assignment/agent.py','s07-assignment/safeguards.py','s07-assignment/evals.py','s07-assignment/datasets/agent_eval.jsonl','s07-assignment/experiments/baseline.csv','s07-assignment/experiments/tool_failure.csv','s07-assignment/traces/success.txt','s07-assignment/traces/failure.txt','s07-assignment/FINDINGS.md'}; actual=set(zipfile.ZipFile('s07-assignment/s07-assignment.zip').namelist()); assert actual == expected, {'missing': sorted(expected-actual), 'extra': sorted(actual-expected)}; print('exact 10-file allowlist: OK')"
+```
+
 Calculate a checksum for handoff:
 
 ```bash
 shasum -a 256 s07-assignment/s07-assignment.zip
 ```
 
-The archive must contain at least:
+The archive must contain exactly these ten file entries:
 
 ```text
 s07-assignment/store.py
@@ -1107,9 +1131,27 @@ s07-assignment/traces/failure.txt
 s07-assignment/FINDINGS.md
 ```
 
-It must not contain:
+It must not contain any other file. In particular, the detailed README,
+documents, tests, local environment, project configuration, dependency lock,
+extra refusal trace, safeguard probe, and supporting experiment files remain in
+GitHub but are deliberately excluded from the assignment ZIP. The PDF does not
+request `README.md` in the ZIP; it remains available in the repository:
 
 ```text
+s07-assignment/README.md
+s07-assignment/docs/
+s07-assignment/tests/
+s07-assignment/pyproject.toml
+s07-assignment/uv.lock
+s07-assignment/.env.example
+s07-assignment/.gitignore
+s07-assignment/.gitattributes
+s07-assignment/.python-version
+s07-assignment/safeguard_probe.py
+s07-assignment/traces.py
+s07-assignment/experiments/safeguards.txt
+s07-assignment/experiments/vector_store_build.txt
+s07-assignment/traces/refusal.txt
 s07-assignment/.env
 s07-assignment/.venv/
 __pycache__/
@@ -1171,7 +1213,8 @@ The completed project includes:
 - a concise findings document with no placeholders;
 - a locked Python environment;
 - 14 passing automated checks; and
-- a validated submission ZIP that excludes secrets and local generated state.
+- a validated submission ZIP containing exactly the handout's ten requested
+  files and no repository support files.
 
 The evidence supports a clear decision: the architecture is a useful and safe
 coursework prototype, but it should not be placed behind a real user-facing
