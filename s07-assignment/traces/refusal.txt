@@ -1,0 +1,9 @@
+QID      -> q06
+QUESTION -> What support email address should users contact for help with the portfolio research assistant?
+ACT      -> file_search(queries=['support email for portfolio research assistant', 'contact support for portfolio research assistant', 'portfolio research assistant contact email'])
+OBSERVE  -> file_search search completed
+ACT      -> flag_for_human({'reason': 'The search did not yield specific information regarding the support email address for the portfolio research assistant.'})
+OBSERVE  -> flag_for_human returned Flagged for human review: The search did not yield specific information regarding the support email address for the portfolio research assistant.
+DECIDE   -> I couldn't find the support email address for the portfolio research assistant in the documents searched. I have flagged this for human review for further assistance.
+
+Sources: none (flagged for human review)

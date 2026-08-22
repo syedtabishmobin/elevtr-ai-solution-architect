@@ -1,0 +1,10 @@
+[project]
+name = "s07-assignment"
+version = "0.1.0"
+description = "A safeguarded document agent built with Microsoft Agent Framework and OpenAI file search"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "agent-framework==1.15.0",
+    "python-dotenv==1.2.3",
+]

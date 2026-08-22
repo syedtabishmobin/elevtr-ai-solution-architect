@@ -1,0 +1,13 @@
+OpenAI vector store build
+=========================
+
+store_name=s07-knowledge-base
+uploaded_files=5
+- apple_annual_report.pdf
+- equity_research_policy.md
+- microsoft_annual_report.pdf
+- portfolio_research_faq.md
+- tesla_annual_report.pdf
+
+The generated vector_store_id was saved as OPENAI_VECTOR_STORE_ID in the local,
+ignored .env file so the same hosted store could be reused for every live run.

@@ -1,0 +1,25 @@
+qid,category,expected_behavior,flagged,guardrail,response
+q01,direct_lookup,answer_with_sources,False,pass,"An internal risk score of 70 out of 100 triggers an additional risk review for a holding.
+
+Sources: equity_research_policy.md"
+q02,direct_lookup,answer_with_sources,False,pass,"Material company announcements must be reviewed within two business days, rather than waiting for the next scheduled review.
+
+Sources: equity_research_policy.md"
+q03,direct_lookup,answer_with_sources,False,pass,"The baseline embedding model for the demonstration is **nomic-embed-text**, which runs locally through **Ollama**.
+
+Sources: portfolio_research_faq.md"
+q04,multi_file,answer_with_sources,False,pass,"When a holding is escalated, the reviewer must record the evidence, the source file, and the date of the decision .
+
+As for filling gaps in evidence with general knowledge, the assistant is explicitl"
+q05,multi_file,answer_with_sources,False,pass,"After a replacement of outdated content has been approved or a source has been deleted, the following handling procedures are recommended:
+
+1. **Removal from Active Retrieval Corpus**: Superseded work"
+q06,missing_information,flag_for_human,True,pass,"I couldn't find the support email address for the portfolio research assistant in the provided documents. I've flagged this for human review for further assistance.
+
+Sources: none (flagged for human r"
+q07,distractor,answer_with_sources,False,fail,"For the three months ended June 27, 2026, the net sales were as follows:
+
+- **Product net sales:** $78,678 million
+- **Services net sales:** $30,739 million
+- **Total net sales:** $109,417 million."
+q08,direct_lookup,answer_with_sources,False,pass,"The demonstration normally supplies **four** closest chunks to the answer model for each question. Although a smaller or larger value may be evaluated later, this four-chunk provision is the current s"

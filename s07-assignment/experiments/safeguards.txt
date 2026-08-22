@@ -1,0 +1,6 @@
+Safeguard probe
+===============
+
+max_iterations: {'status': 'limit_reached', 'model_calls': 2, 'tool_calls': 1, 'final_tool_choice': 'none', 'final_text': 'Function invocation limit reached before a final answer could be produced.'}
+max_function_calls: {'status': 'limit_reached', 'model_calls': 2, 'tool_calls': 1, 'final_tool_choice': 'none', 'final_text': 'Function invocation limit reached before a final answer could be produced.'}
+citation_guardrail: {'missing_sources_line': {'value': 'fail', 'reason': 'no Sources: line found'}, 'empty_sources_line': {'value': 'fail', 'reason': 'Sources: line was empty'}, 'grounded_sources_line': {'value': 'pass', 'reason': 'equity_research_policy.md'}}

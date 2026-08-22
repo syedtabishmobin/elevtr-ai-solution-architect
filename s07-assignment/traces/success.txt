@@ -1,0 +1,7 @@
+QID      -> q01
+QUESTION -> What internal risk score triggers an additional risk review for a holding?
+ACT      -> file_search(queries=['What internal risk score triggers an additional risk review for a holding?'])
+OBSERVE  -> file_search search completed
+DECIDE   -> An additional risk review for a holding is triggered when its internal risk score reaches 70 out of 100.
+
+Sources: equity_research_policy.md

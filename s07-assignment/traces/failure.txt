@@ -1,0 +1,3 @@
+QID      -> q01
+QUESTION -> What internal risk score triggers an additional risk review for a holding?
+ERROR    -> ChatClientException: ('<class \'agent_framework_openai._chat_client.OpenAIChatClient\'> service failed to complete the prompt: Error code: 404 - {\'error\': {\'message\': "Vector store with id [\'vs_does_not_exist\'] not found.", \'type\': \'invalid_request_error\', \'param\': None, \'code\': None}}', NotFoundError('Error code: 404 - {\'error\': {\'message\': "Vector store with id [\'vs_does_not_exist\'] not found.", \'type\': \'invalid_request_error\', \'param\': None, \'code\': None}}'))
