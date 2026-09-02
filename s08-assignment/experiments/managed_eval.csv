@@ -1,0 +1,17 @@
+qid,category,expected_behavior,status,called_tools,response
+q01,direct_lookup,answer_with_sources,pass,file_search,"A holding is escalated for an additional risk review when its internal risk score reaches 70 out of 100.
+
+Sources: equity_research_policy.md"
+q04,multi_file,answer_with_sources,pass,file_search,"The reviewer must record the evidence, the source file, and the date of the decision. (equity_research_policy.md)
+
+The assistant may not fill evidence gaps from general knowledge; it must answer only from retrieved context and indicate when the retrieved context is insufficient. (portfolio_research_faq.md)
+
+Sources: equity_research_policy.md, portfolio_research_faq.md"
+q06,missing_information,flag_for_human,pass,"file_search, flag_for_human","Sorry — I don't know. The provided documents do not list a support email for the portfolio research assistant. I have flagged this for human review.
+
+Sources: none (flagged for human review)"
+q07,distractor,answer_with_sources,pass,file_search,"Products net sales: $78,678 million
+Services net sales: $30,739 million
+Total net sales: $109,417 million
+
+Sources: apple_annual_report.pdf"

@@ -1,0 +1,15 @@
+Managed knowledge base verification - 2026-09-02
+
+Vector store: s08-knowledge-base (vs_mhKYHZUqxOEKGb0CXd2j7kt6)
+Status: completed
+File counts: total 5, completed 5, failed 0, in progress 0, cancelled 0
+
+Indexed files:
+- apple_annual_report.pdf
+- equity_research_policy.md
+- microsoft_annual_report.pdf
+- portfolio_research_faq.md
+- tesla_annual_report.pdf
+
+Toolbox: s08-document-tools version 1
+Tool: managed file_search pinned to the vector store above

@@ -1,0 +1,30 @@
+Assignment 05 cloud placement gates - observed 2026-09-02
+
+Target: Azure AI Foundry project elevtr-s08 in Australia East
+Model: gpt-5-mini 2025-08-07, GlobalStandard
+
+Availability: PASS FOR LAB
+- Model lifecycle reported GenerallyAvailable in the Azure catalog.
+- Foundry Hosted Agents are supported in Australia East.
+- Account and project provisioning both succeeded in Australia East.
+
+Residency: FAIL FOR SENSITIVE PRODUCTION / ACCEPTED FOR THIS LAB
+- GlobalStandard was the usable deployment type for this model and subscription.
+- GlobalStandard can process inference outside the resource region.
+- The lab corpus is public company filings plus fictional course policy files.
+
+Quota: PASS
+- Live Australia East usage output reported GlobalStandard gpt-5-mini current 100,
+  limit 500 (Azure reports this quota in thousands of tokens per minute).
+- The deployment exposes 100 requests/minute and 100,000 tokens/minute.
+- A first run at capacity 10 throttled the hosted agent's second model call.
+  Raising capacity to 100 removed the error; the final four rows passed.
+
+Isolation: PASS FOR PLATFORM CAPABILITY / NOT ENABLED IN THIS LAB
+- The account, project, and hosted agent use managed identities.
+- Foundry supports private networking for a production design.
+- This lab kept the public endpoint enabled to avoid adding unnecessary network
+  infrastructure to a non-sensitive course workload.
+
+Decision: deploy the lab, but do not approve sensitive production data until a
+regional or otherwise contractually acceptable processing boundary has quota.

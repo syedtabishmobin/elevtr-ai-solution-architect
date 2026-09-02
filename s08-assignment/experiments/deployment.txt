@@ -1,0 +1,30 @@
+Managed deployment verification - 2026-09-02
+
+Azure AI Services account: foundry-elevtr-s08-aue
+Project: elevtr-s08
+Region: Australia East
+Identity: system assigned
+Model deployment: gpt-5-mini-s08
+Model/version: gpt-5-mini / 2025-08-07
+Deployment type/capacity: GlobalStandard / 100
+Provisioning state: Succeeded
+Published limits: 100 requests/minute, 100,000 tokens/minute
+
+Hosted agent: s08-docs-agent version 1
+Status: active
+Runtime: Python 3.13 remote build, 0.5 CPU, 1 GiB memory
+Protocol: Responses 1.0.0
+Created active: 2026-09-02T09:35:49Z
+Resource creation started: 2026-09-02T09:29:35Z
+Resource-start-to-active elapsed time: 6 minutes 14 seconds
+Hosted deployment operation elapsed time: approximately 84 seconds
+Downloaded-code SHA-256 verified:
+003fc4cd61cbfdae3b55285f8149f65d07dc8b8d9a5b1b1196c134ce07796df0
+
+Two issues were observed and fixed:
+1. Foundry's vector-store endpoint rejected the optional OpenAI description
+   field, so the portable name-only create call was used.
+2. Capacity 10 allowed file search but throttled the internal answer call. The
+   deployment was raised to capacity 100 before the final evaluation.
+
+Final managed evaluation: 4/4 pass in 142.5 seconds.
