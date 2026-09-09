@@ -4,9 +4,9 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 BASE = Path(__file__).resolve().parent
 FILES = (
-    "agent.py", "hitl.py", "requirements.txt",
+    "agent.py", "hitl.py", "pyproject.toml", "uv.lock",
     "evidence/full-trace.png", "evidence/blocked-gate.png",
-    "evidence/runs-ABC.txt", "FINDINGS.pdf",
+    "OUTPUTS.md", "FINDINGS.md",
 )
 
 

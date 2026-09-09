@@ -1,4 +1,6 @@
-# Assignment #6 - Trace It, Then Gate It
+# ELVTR AI Solution Architect - Assignment 11
+
+## Trace It, Then Gate It
 
 This is the S11 tracing and human-in-the-loop assignment. The folder follows the repository's class numbering: Assignment #5 is in `s08-assignment`, and Assignment #6 is in `s11-assignment`.
 
@@ -112,7 +114,30 @@ After explicit user authorization, the completed runs used the existing Azure re
 
 ## Files and exact submission ZIP
 
-`FINDINGS.md` is the editable first-person write-up; `FINDINGS.pdf` is its visually checked one-page version. `evidence/runs-ABC.txt` contains the actual captured terminal output. The corresponding JSON results, identical exported spans and metrics are in `evidence/`. SQLite databases and environments remain ignored under `runtime/` and `.venv/`.
+[`FINDINGS.md`](FINDINGS.md) is the short first-person write-up answering the four assignment questions. Its content is unchanged from the previously verified one-page write-up; Markdown pagination depends on the viewer. [`OUTPUTS.md`](OUTPUTS.md) contains the actual captured terminal output in fenced code blocks, following the evidence presentation in S04 and S05. All generated documentation is Markdown. The JSON/JSONL files in `evidence/` are machine-readable trace data for reproducibility, not document deliverables, and are excluded from the ZIP. SQLite databases and environments remain ignored under `runtime/` and `.venv/`.
+
+### Project structure
+
+```text
+s11-assignment/
+├── .python-version
+├── README.md
+├── FINDINGS.md
+├── OUTPUTS.md
+├── agent.py
+├── hitl.py
+├── pyproject.toml
+├── uv.lock
+├── collect_evidence.py
+├── package_submission.py
+├── tests/
+└── evidence/
+    ├── full-trace.png
+    ├── blocked-gate.png
+    └── ... machine-readable trace data
+```
+
+Like S04 and S05, the root contains the README, findings, Python entry points, dependency manifest, lockfile and Python-version file. The separate output document keeps the brief's short write-up concise. The two PNG screenshots are retained because the assignment explicitly requires screenshots.
 
 Recheck the saved live-run evidence and build the ZIP:
 
@@ -121,21 +146,22 @@ uv run python collect_evidence.py
 uv run python package_submission.py
 ```
 
-`collect_evidence.py` requires the completed local files under `runtime/submission`; it validates their ledgers, complete trace ancestry and expected gate decisions before copying the portable evidence. A fresh clone already contains that portable evidence. `render_findings.py` can regenerate the PDF from Markdown with ReportLab (`python -m pip install reportlab` in a document-rendering environment).
+`collect_evidence.py` requires the completed local files under `runtime/submission`; it validates their ledgers, complete trace ancestry and expected gate decisions before copying the portable evidence. A fresh clone already contains that portable evidence and `OUTPUTS.md`. New agent runs save Markdown terminal logs. The collector also reads the original local TXT captures to preserve the recorded evidence without rerunning Azure calls.
 
-The archive contains exactly these seven files, all under `s11-assignment/`:
+The archive contains exactly these eight files, all under `s11-assignment/`:
 
 ```text
 agent.py
 hitl.py
-requirements.txt
+pyproject.toml
+uv.lock
 evidence/full-trace.png
 evidence/blocked-gate.png
-evidence/runs-ABC.txt
-FINDINGS.pdf
+OUTPUTS.md
+FINDINGS.md
 ```
 
-This maps to the checklist's runnable code, two screenshots, three terminal ledgers and one-page write-up. Setup comments are included in `requirements.txt` so the small submission remains runnable. The detailed README, editable Markdown, tests, lockfile, raw spans and helper scripts stay in GitHub; they are excluded from the LMS ZIP. The original handout and unrelated prior documents are excluded as well.
+This maps to the checklist's runnable code, two screenshots, three terminal ledgers and short write-up. The manifest and lockfile provide the same `uv sync --frozen` setup used by the previous assignments. The detailed README, tests, raw spans and helper scripts stay in GitHub; they are excluded from the LMS ZIP. The original handout and unrelated prior documents are excluded as well. The ZIP contains no PDF or TXT documents.
 
 ## References
 

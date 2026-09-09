@@ -185,6 +185,10 @@ if __name__ == "__main__":
         def flush(self):
             for stream in self.streams:
                 stream.flush()
-    with (opts.output / f"run-{opts.scenario}-terminal.txt").open("x") as log:
-        with contextlib.redirect_stdout(Tee(sys.stdout, log)):
-            run(opts.scenario, opts.output)
+    with (opts.output / f"run-{opts.scenario}-terminal.md").open("x") as log:
+        log.write(f"## Run {opts.scenario}\n\n````text\n")
+        try:
+            with contextlib.redirect_stdout(Tee(sys.stdout, log)):
+                run(opts.scenario, opts.output)
+        finally:
+            log.write("\n````\n")

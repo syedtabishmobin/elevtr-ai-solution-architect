@@ -16,7 +16,7 @@ This repository contains my practical work for the ELVTR AI Solution Architect c
 
 ## Latest assignment
 
-[`s11-assignment/`](s11-assignment/) completes Assignment #6, "Trace It, Then Gate It". It uses the existing Azure model, a local Phoenix backend and a SQLite approval gate. All three live scenarios passed: approved payout, blocked account drift, and human-approved drift. Eleven gate tests passed. The folder includes actual Safari trace screenshots, terminal ledgers, a first-person `FINDINGS.md`, a one-page PDF and an exact seven-file submission ZIP builder. Payouts are strictly simulated; there is no money-transfer integration.
+[`s11-assignment/`](s11-assignment/) completes Assignment #6, "Trace It, Then Gate It". It uses the existing Azure model, a local Phoenix backend and a SQLite approval gate. All three live scenarios passed: approved payout, blocked account drift, and human-approved drift. Eleven gate tests passed. Following S04 and S05, generated documents use Markdown: `FINDINGS.md` contains the short write-up and `OUTPUTS.md` preserves the terminal ledgers in code blocks. The folder also includes the required Safari trace screenshots and an exact eight-file submission ZIP builder. Payouts are strictly simulated; there is no money-transfer integration.
 
 ## Previous cloud deployment assignment
 

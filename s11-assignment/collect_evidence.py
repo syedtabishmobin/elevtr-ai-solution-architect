@@ -27,13 +27,25 @@ for label in "ABC":
         assert gates[-1]["attributes"]["approved_by"] == "Syed Tabish Mobin"
     for suffix in (".json", "-spans.jsonl"):
         shutil.copyfile(SOURCE / f"run-{label}{suffix}", TARGET / f"run-{label}{suffix}")
-    logs.append((SOURCE / f"run-{label}-terminal.txt").read_text())
+    log_path = SOURCE / f"run-{label}-terminal.md"
+    if log_path.exists():
+        logs.append(log_path.read_text())
+    else:
+        # Preserve the original live captures when migrating older evidence.
+        original = (SOURCE / f"run-{label}-terminal.txt").read_text()
+        logs.append(f"## Run {label}\n\n````text\n{original.rstrip()}\n````\n")
     metrics.append({"run": label, "trace_id": result["trace_id"], "spans": len(spans),
         "model_calls": len(models), "payouts": len(payout),
         "tokens": sum(s["attributes"]["llm.token_count.total"] for s in models),
         "estimated_usd": sum(s["attributes"]["llm.cost.total"] for s in models),
         "duration_ms": roots[0]["duration_ms"]})
-(TARGET / "runs-ABC.txt").write_text("\n\n".join(logs))
+(BASE / "OUTPUTS.md").write_text(
+    "# Class 11 Assignment #6 - Execution Outputs\n\n"
+    "These are the captured outputs from the completed Azure runs on 9 September 2026. "
+    "The model responses and ledgers are preserved verbatim inside code blocks. "
+    "Run A used the approved account; B changed the account and was blocked; "
+    "C used the same changed account and continued after my exact-call approval.\n\n"
+    + "\n\n".join(logs))
 (TARGET / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
 print(json.dumps(metrics, indent=2))
 print("All three live-run contracts verified.")
