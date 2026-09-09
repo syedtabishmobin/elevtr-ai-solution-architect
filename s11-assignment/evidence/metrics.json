@@ -1,0 +1,32 @@
+[
+  {
+    "run": "A",
+    "trace_id": "a4ecde52e97ee9f16b4e41e86e3db718",
+    "spans": 7,
+    "model_calls": 3,
+    "payouts": 1,
+    "tokens": 1139,
+    "estimated_usd": 0.000633,
+    "duration_ms": 6608.579
+  },
+  {
+    "run": "B",
+    "trace_id": "6a10aa66e3b82dc64b15f3a2b0db70ca",
+    "spans": 7,
+    "model_calls": 3,
+    "payouts": 0,
+    "tokens": 1172,
+    "estimated_usd": 0.00072875,
+    "duration_ms": 7095.934
+  },
+  {
+    "run": "C",
+    "trace_id": "370c2d43e76d51af6182f8ef919631b9",
+    "spans": 8,
+    "model_calls": 3,
+    "payouts": 1,
+    "tokens": 1128,
+    "estimated_usd": 0.00060925,
+    "duration_ms": 16146.039
+  }
+]

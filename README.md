@@ -12,8 +12,13 @@ This repository contains my practical work for the ELVTR AI Solution Architect c
 | `s06-assignment/` | Local RAG pipeline, evaluation, and findings |
 | `s07-assignment/` | Agent Framework document assistant with hosted file search, safeguards, traces, and failure testing |
 | `s08-assignment/` | Assignment #5: Azure AI Foundry cloud-placement gates, managed vector store, hosted agent deployment, and live endpoint evaluation |
+| `s11-assignment/` | Assignment #6: live Azure tool-agent traces in Phoenix, exact-argument approval gates, three ledger experiments and a one-page write-up |
 
 ## Latest assignment
+
+[`s11-assignment/`](s11-assignment/) completes Assignment #6, "Trace It, Then Gate It". It uses the existing Azure model, a local Phoenix backend and a SQLite approval gate. All three live scenarios passed: approved payout, blocked account drift, and human-approved drift. Eleven gate tests passed. The folder includes actual Safari trace screenshots, terminal ledgers, a first-person `FINDINGS.md`, a one-page PDF and an exact seven-file submission ZIP builder. Payouts are strictly simulated; there is no money-transfer integration.
+
+## Previous cloud deployment assignment
 
 [`s08-assignment/`](s08-assignment/) ports the previous document agent to Microsoft Azure AI Foundry. It includes:
 
